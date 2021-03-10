@@ -156,16 +156,11 @@ const TrieNode = function (key) {
 	};
   }
 
-//Adding things to the Trie
+//Adding things to the Trie from the variable majors array in info.js
 const trie = new Trie();
-trie.insert("Computer Science (Engineering and Computer Science) Lower Division");
-trie.insert("Computer Science (Engineering and Computer Science) Upper Division");
-trie.insert("Management (Business & Economics) Lower Division");
-trie.insert("Management (Business & Economics) Upper Division");
-trie.insert("Kinesiology (Health & Human Development) Lower Division");
-trie.insert("Kinesiology (Health & Human Development) Upper Division");
-trie.insert("Psychology (Social & Behavior Sciences) Lower Division");
-trie.insert("Psychology (Social & Behavior Sciences) Upper Division");
+for (let i = 0; i < majors.length; i++) {
+	trie.insert(majors[i]);
+  }
 
 inputBox.addEventListener('keyup', (e) => {
 	let userInput = e.target.value;
