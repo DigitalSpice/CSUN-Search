@@ -4,6 +4,7 @@ const suggBox = searchWrapper.querySelector(".autocom-box");
 const icon = searchWrapper.querySelector(".icon");
 let linkTag = searchWrapper.querySelector("a");
 let webLink;
+var txt = "";
 
   // we start with the TrieNode
 const TrieNode = function (key) {
@@ -36,7 +37,7 @@ const TrieNode = function (key) {
 	this.root = new TrieNode(null);
 	
 	// inserts a word into the trie.
-	this.insert = function(word) {
+	 this.insert = function(word) {
 	  let node = this.root; // we start at the root
 	  word = word.toUpperCase();
 	  // for every character in the word
@@ -156,33 +157,30 @@ const TrieNode = function (key) {
 	};
   }
 
-//Adding things to the Trie from the variable majors array in info.js
+//Adding things to the Trie from the variable majors and classes array in info.js
 const trie = new Trie();
 for (let i = 0; i < majors.length; i++) {
 	trie.insert(majors[i]);
   }
+const trie2 = new Trie();
+for (let i = 0; i < classes.length; i++) {
+	trie2.insert(classes[i]);
+   }
 
+//Function for user input, searches by mouse click to the search icon   
 inputBox.addEventListener('keyup', (e) => {
 	let userInput = e.target.value;
 	let filteredArray = [];
 	if(userInput){
-		icon.onclick = ()=>{
-            webLink = "https://www.google.com/search?q=" + userInput;
-            linkTag.setAttribute("href", webLink);
-            console.log(webLink);
-            linkTag.click();
-        }
 		filteredArray = trie.find(userInput);
-		// return console.log(filteredArray);
 
 		filteredArray = filteredArray.map((data)=>{
             // passing return data inside li tag
             return data = '<li>'+ data +'</li>';
 		});
 
-	console.log(filteredArray);
-
 	searchWrapper.classList.add("active"); //show autocomplete box
+
 	showSuggestions(filteredArray);
 	let allList = suggBox.querySelectorAll("li");
 	for (let i = 0; i < allList.length; i++) {
@@ -197,10 +195,10 @@ inputBox.addEventListener('keyup', (e) => {
 function select(element){
     let selectData = element.textContent;
     inputBox.value = selectData;
+	txt = '<h1>' + inputBox.value;
+	console.log(txt);
     icon.onclick = ()=>{
-        webLink = "https://www.google.com/search?q=" + selectData;
-        linkTag.setAttribute("href", webLink);
-        linkTag.click();
+		Results();
     }
     searchWrapper.classList.remove("active");
 }
@@ -220,4 +218,10 @@ function showSuggestions(list){
         listData = list.join('');
     }
     suggBox.innerHTML = listData;
+}
+
+function Results(){
+	document.getElementById("results").innerHTML = trie2.find(txt);
+	document.getElementById("results").scrollIntoView({ behavior: 'smooth'});
+	
 }
