@@ -11,9 +11,7 @@ html{
 	background: rgb(206,11,38);
 	background: linear-gradient(144deg, rgba(206,11,38,1) 0%, rgba(242,240,219,1) 53%, rgba(241,241,236,1) 100%); 
 	padding: 0 20px;
-	height: 100%;
 	min-height: 100%;
-	max-height: 100%;
   }
 
 html::before{
@@ -21,7 +19,7 @@ html::before{
   background-image: url('CSUNS.svg');
   opacity:0.3;
   background-repeat: space;
-  position:absolute;
+  position:fixed;
   top:0;
   bottom:0;
   right:0;
@@ -41,11 +39,15 @@ h1{
   text-shadow: 4px 4px 5px rgb(75, 66, 66);
 }
 
+#results{
+  background:  rgba(242,240,219,0.7);;
+}
+
 
 footer {
   background-color: rgba(206,11,38, 0.5);
   width:100%;
-  position:absolute;
+  position:fixed;
   bottom:0;
   left:0;
   text-align: center;
