@@ -39,7 +39,7 @@ const TrieNode = function (key) {
 	// inserts a word into the trie.
 	 this.insert = function(word) {
 	  let node = this.root; // we start at the root
-	  word = word.toUpperCase();
+	  word = word.toLowerCase();
 	  // for every character in the word
 	  for(let i = 0; i < word.length; i++) {
 		// check to see if character node exists in children.
@@ -65,7 +65,7 @@ const TrieNode = function (key) {
 	// check if it contains a whole word.
 	this.contains = function(word) {
 	  let node = this.root;
-	  word = word.toUpperCase();
+	  word = word.toLowerCase();
 	  // for every character in the word
 	  for(let i = 0; i < word.length; i++) {
 		// check to see if character node exists in children.
@@ -88,7 +88,7 @@ const TrieNode = function (key) {
 	  let output = [];
 	  // for every character in the prefix
 	  for(let i = 0; i < prefix.length; i++) {
-		prefix = prefix.toUpperCase();
+		prefix = prefix.toLowerCase();
 		// make sure prefix actually has words
 		if (node.children[prefix[i]]) {
 		  node = node.children[prefix[i]];
@@ -120,7 +120,7 @@ const TrieNode = function (key) {
 	// removes a word from the trie.
 	this.remove = function (word) {
 		let root = this.root;
-		word = word.toUpperCase();
+		word = word.toLowerCase();
 		if(!word) return;
   
 		// recursively finds and removes a word
@@ -196,7 +196,7 @@ function select(element){
     let selectData = element.textContent;
     inputBox.value = selectData;
 	txt = '<h1>' + inputBox.value;
-	console.log(txt);
+	//console.log(txt);
     icon.onclick = ()=>{
 		Results();
     }
